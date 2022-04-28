@@ -1,0 +1,10 @@
+	$header=Get-Content -path $WorkingDir\$decryptFileName | select -first 1
+
+    $header= $header.ToUpper()
+    
+    $headerfile="Alpacaheader.txt"
+    $header |Out-File $WorkingDir\$HeaderFile
+    
+    $file= Get-Content $WorkingDir\$decryptFileName | select -Skip 1 
+    (Get-Content $WorkingDir\$HeaderFile),$file |
+    Set-Content $WorkingDir\$decryptFileName
